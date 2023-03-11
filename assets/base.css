@@ -2993,3 +2993,33 @@ details-disclosure > details {
     outline: transparent solid 1px;
   }
 }
+
+/*code for color swatches when the variant is not selected */
+.productForm input[type='radio'] + .color-swatches {
+  border: 2px solid ffffff;
+  width: 30px;
+  height: 30px;
+  padding: 0px;
+}
+
+.productForm input[type="radio"]:checked + .color-swatches,
+.productForm input[type='radio']:hover + .color-swatches {
+  border: 2px solid b7bcbc;
+}
+
+.productForm input[type='radio'] + .swatch {
+  border: 2px solid ffffff;
+  width: 30px;
+  height: 30px;
+  padding: 0px;
+  color: black;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.productForm input[type='radio']:checked + .swatch,
+.productForm input[type='radio']:hover + .swatch {
+  border: 2px solid b7bcbc;
+  background: none;
+}
