@@ -2995,19 +2995,23 @@ details-disclosure > details {
 }
 
 /*code for color swatches when the variant is not selected */
-.productForm input[type='radio'] + .color-swatches {
+/*we have used the radio button type for swatches and styled it as below*/
+.product-form__input input[type='radio'] + .color-swatches {
   border: 2px solid ffffff;
   width: 30px;
   height: 30px;
   padding: 0px;
 }
 
-.productForm input[type="radio"]:checked + .color-swatches,
-.productForm input[type='radio']:hover + .color-swatches {
+/*when the color swatch is selected, the following code is applied using the :checked class. It is normally used for selected and unselected items*/
+.product-form__input input[type="radio"]:checked + .color-swatches,
+.product-form__input input[type='radio']:hover + .color-swatches {
   border: 2px solid b7bcbc;
 }
 
-.productForm input[type='radio'] + .swatch {
+/*code for color swatches when the variant is not selected */
+/*we have used the radio button type for swatches and styled it as below*/
+.product-form__input input[type='radio'] + .swatch {
   border: 2px solid ffffff;
   width: 30px;
   height: 30px;
@@ -3018,8 +3022,9 @@ details-disclosure > details {
   justify-content: center;
 }
 
-.productForm input[type='radio']:checked + .swatch,
-.productForm input[type='radio']:hover + .swatch {
+/*when the color swatch is selected, the following code is applied using the :checked class. It is normally used for selected and unselected items*/
+.product-form__input input[type='radio']:checked + .swatch,
+.product-form__input input[type='radio']:hover + .swatch {
   border: 2px solid b7bcbc;
   background: none;
 }
