@@ -340,6 +340,7 @@
                             <label class="color-swatch" 
                             style="background-image:url({{ value | append:'.png' | file_url }})" 
                             for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+                            {{ value }}
                             </label>
                         {% else %}
                             <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
