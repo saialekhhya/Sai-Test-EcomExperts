@@ -156,10 +156,6 @@
                 {%- if forloop.index > 2 -%}
                   {%- assign lazy_load = true -%}
                 {%- endif -%}
-                {% comment %}
-                code here is edited to make sure visitors can not find / buy this product as this product will only be offered in a bundle format 
-                {% endcomment %}
-                {%- if product.title !="Soft Winter Jacket" -%}
                 <li class="grid__item">
                   {% render 'card-product',
                     card_product: product,
@@ -171,29 +167,7 @@
                     show_quick_add: section.settings.enable_quick_add,
                     section_id: section.id
                   %}
-                {% comment %}
-                this code snippet is for variants. 
-                if the variant products are available, then they get an option to add them to cart or else it displays as "sold out"
-                {% endcomment %}
-                  {% if request.page_type == 'collection' %}
-                    {% if product.variants.size > 1 %}
-                      <div class="variant-drop-down">
-                        <form action="/cart/add" method="post">
-                          <select name="id">
-                            {% for variant in product.variants %}
-                              {% if variant.available %}
-                                <option value="{{ variant.id }}">{{ variant.title }}</option>
-                              {% else %}
-                                <option disabled="disabled">{{ variant.title }} - Sold Out</option>
-                              {% endif %}
-                            {% endfor %}</select
-                          ><br>
-                        </form>
-                      </div>
-                    {% endif %}
-                  {% endif %}
                 </li>
-                  {%- endif -%}
               {%- endfor -%}
             </ul>
 
