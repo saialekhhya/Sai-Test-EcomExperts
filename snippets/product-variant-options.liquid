@@ -6,6 +6,7 @@
   - option: {Object} current product_option object.
   - block: {Object} block object.
 
+
   Usage:
   {% render 'product-variant-options',
     product: product,
@@ -13,7 +14,6 @@
     block: block
   %}
 {% endcomment %}
-
 {%- liquid
   assign variants_available_arr = product.variants | map: 'available'
   assign variants_option1_arr = product.variants | map: 'option1'
@@ -59,23 +59,10 @@
         class="disabled"
       {% endif %}
     >
-
-    {% comment %}
-    this code snippet is for color swatches meta field
-    it assigns the selected color for the selected variant (both as selected in the store products page)
-    and it displays the color in the background as color swatches
-    {% endcomment %}
-
-    {% if product.variants[forloop.index0].metafields.colorswatches.values and option.name == 'Color' %}
-      <label class = "color-swatches" for = "{{section.id}} - {{option.position}} - {{forloop.index0}}"
-      style = "background-color: {{product.variants[forloop.index0].metafields.colorswatches.values}}" >
-      </label>
-    
-    {% else %}
-      <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
-        {{ value }}
-      </label>
-    {% endif %}
+    <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+      {{ value -}}
+      <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
+    </label>
   {%- elsif block.settings.picker_type == 'dropdown' -%}
     <option
       value="{{ value | escape }}"
