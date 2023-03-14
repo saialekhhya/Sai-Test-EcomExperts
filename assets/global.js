@@ -1078,7 +1078,7 @@ class VariantSelects extends HTMLElement {
       `variant=${this.currentVariant.id}`;
 
     // Update the URL and trigger a page reload
-     window.location.href = firstAvailableURL; 
+     window.location.href = url; 
   }
 
   updateVariantStatuses() {
