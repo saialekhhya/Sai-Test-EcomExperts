@@ -1350,7 +1350,7 @@ customElements.define("product-recommendations", ProductRecommendations);
 jQuery(function() {
   $('.single-option-selector').on('change', function(){
       setTimeout(function(){ 
-        if($('[name="id"]').val() != "{{ product.selected_or_first_available_variant.id }}"){
+        if($('[name="id"]').val() != "{{ product.currentVariant.id }}"){
           location.reload();
         }
       }, 1);
