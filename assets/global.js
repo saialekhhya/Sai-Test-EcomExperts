@@ -1079,6 +1079,7 @@ class VariantSelects extends HTMLElement {
 
     // Update the URL and trigger a page reload
     window.location.href = url;
+    location.reload();
   }
 
   updateVariantStatuses() {
