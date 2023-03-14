@@ -1045,7 +1045,6 @@ class VariantSelects extends HTMLElement {
       "",
       `${this.dataset.url}?variant=${this.currentVariant.id}`
     );
-    location.reload();
   }
 
   updateShareUrl() {
