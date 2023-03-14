@@ -1063,11 +1063,7 @@ class VariantSelects extends HTMLElement {
     const productForms = document.querySelectorAll(
       `#product-form-${this.dataset.section}, #product-form-installment-${this.dataset.section}`
     );
-    productForms.forEach((productForm) => {
-      productForm.addEventListener("submit", (event) => {
-        event.preventDefault(); // Prevent the default form submission behavior
-      });
-    });
+    
 
     // Get the current URL and remove any existing variant ID query parameter
     let url = window.location.href.replace(/[\?&]variant=\d+/, "");
