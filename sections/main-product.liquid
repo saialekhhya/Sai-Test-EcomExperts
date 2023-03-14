@@ -337,16 +337,9 @@
                           >
                           </label>
                         {% else %}
-                          {% if option.name == 'Color' %}
-                            <label class="color-swatch" 
-                            style="background-image:url({{ value | append:'.png' | file_url }})" 
-                            for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
-                            </label>
-                        {% else %}
-                            <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+                          <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
                             {{ value }}
-                            </label>
-                        {% endif %}
+                          </label>
                         {% endif %}
                       {%- endfor -%}
                     </fieldset>
@@ -420,6 +413,7 @@
                   </div>
                 </div>
               </noscript>
+
 
 
               
