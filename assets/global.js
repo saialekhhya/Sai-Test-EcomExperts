@@ -1045,6 +1045,7 @@ class VariantSelects extends HTMLElement {
       "",
       `${this.dataset.url}?variant=${this.currentVariant.id}`
     );
+    location.reload();
   }
 
   updateShareUrl() {
@@ -1060,25 +1061,12 @@ class VariantSelects extends HTMLElement {
   //it updates the URL query parameters to reflect the currently selected product variant, 
   //and then reloads the page with the updated URL.
   updateVariantInput() {
-    const productForms = document.querySelectorAll(
-      `#product-form-${this.dataset.section}, #product-form-installment-${this.dataset.section}`
-    );
+    const productForms = document.querySelectorAll(`#product-form-${this.dataset.section}, #product-form-installment-${this.dataset.section}`);
     productForms.forEach((productForm) => {
-      productForm.addEventListener("submit", (event) => {
-        event.preventDefault(); // Prevent the default form submission behavior
-      });
+      const input = productForm.querySelector('input[name="id"]');
+      input.value = this.currentVariant.id;
+      input.dispatchEvent(new Event('change', { bubbles: true }));
     });
-
-    // Get the current URL and remove any existing variant ID query parameter
-    let url = window.location.href.replace(/[\?&]variant=\d+/, "");
-
-    // Add the current variant ID as a query parameter
-    url +=
-      (url.indexOf("?") === -1 ? "?" : "&") +
-      `variant=${this.currentVariant.id}`;
-
-    // Update the URL and trigger a page reload
-     window.location.href = url; 
   }
 
   updateVariantStatuses() {
