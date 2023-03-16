@@ -337,16 +337,9 @@
                           >
                           </label>
                         {% else %}
-                          {% if option.name == 'Color' %}
-                            <label class="color-swatch" 
-                            style="background-image:url({{ value | append:'.png' | file_url }})" 
-                            for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
-                            </label>
-                        {% else %}
                             <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
                             {{ value }}
                             </label>
-                        {% endif %}
                         {% endif %}
                       {%- endfor -%}
                     </fieldset>
@@ -362,37 +355,60 @@
                   {{ block.shopify_attributes }}
                 >
                   {%- for option in product.options_with_values -%}
-                    <div class="product-form__input product-form__input--dropdown {% if forloop.first %}hidden{% endif %}">
-                      <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
-                        {{ option.name }}
-                      </label>
-                      <div class="select">
-                        <select
-                          id="Option-{{ section.id }}-{{ forloop.index0 }}"
-                          class="select__select"
-                          name="options[{{ option.name | escape }}]"
-                          form="{{ product_form_id }}"
-                        >
+                    {% if option.name == 'Color' %}
+                      <div class="product-form__input color-swatch {% if forloop.first %}active{% endif %}">
+                        <label class="form__label">{{ option.name }}</label>
+                        <div class="swatches">
                           {%- for value in option.values -%}
-                            <option
-                              value="{{ value | escape }}"
+                            <div class="swatch"
+                              style="background-color: {{ value | handleize }};"
+                              data-value="{{ value | escape }}"
                               {% if option.selected_value == value %}
-                                selected="selected"
+                                data-selected="true"
                               {% endif %}
-                            >
-                              {{ value }}
-                            </option>
+                            ></div>
                           {%- endfor -%}
-                        </select>
-                        {% render 'icon-caret' %}
+                        </div>
                       </div>
-                    </div>
+                    {% elsif option.name == 'Size' %}
+                      <div class="product-form__input product-form__input--dropdown">
+                        <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+                          {{ option.name }}
+                        </label>
+                        <div class="select">
+                          <select
+                            id="Option-{{ section.id }}-{{ forloop.index0 }}"
+                            class="select__select"
+                            name="options[{{ option.name | escape }}]"
+                            form="{{ product_form_id }}"
+                          >
+                            {%- for value in option.values -%}
+                              <option
+                                value="{{ value | escape }}"
+                                {% if option.selected_value == value %}
+                                  selected="selected"
+                                {% endif %}
+                              >
+                                {{ value }}
+                              </option>
+                            {%- endfor -%}
+                          </select>
+                          {% render 'icon-caret' %}
+                        </div>
+                      </div>
+                    {% endif %}
                   {%- endfor -%}
-              
+
                   <script type="application/json">
+                    {{
+                      product.variants | map: 'options' | map: 'first' | uniq | map: 'name' |
+                      prepend: 'Color' | append: 'Size' | map: 'downcase' | uniq |
+                      map: 'prepend', 'option1_' | map: 'append', '_tag' | join: ','
+                    }} 
                     {{ product.variants | json }}
                   </script>
                 </variant-selects>
+
               {%- endunless -%}
               
               <noscript class="product-form__noscript-wrapper-{{ section.id }}">
