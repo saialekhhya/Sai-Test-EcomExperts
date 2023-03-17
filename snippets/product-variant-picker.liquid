@@ -1,3 +1,4 @@
+
 {% comment %}
   Renders product variant-picker
 
@@ -22,10 +23,40 @@
       {{ block.shopify_attributes }}
     >
       {%- for option in product.options_with_values -%}
+        {% if  option.name == "Color" %}
+      <fieldset class="js product-form__input {% unless forloop.first %}hidden{% endunless %}">
+        <legend class="form__label">{{ option.name }}</legend>
+        {%- for value in option.values -%}
+          <input
+            type="radio"
+            id="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+            name="{{ option.name }}"
+            value="{{ value | escape }}"
+            form="{{ product_form_id }}"
+            {% if option.selected_value == value %}
+              checked
+            {% endif %}
+          >
+          {% if product.variants[forloop.index0].metafields.custom.colorswatches  %}
+            <label class=color-swatch
+              for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+              style="background-color: {{value}}"
+            >
+            </label>
+          {% else %}
+            <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+              {{ value }}
+            </label>
+          {% endif %}
+        {%- endfor -%}
+      </fieldset>
+      
+        {%- else -%}
         <fieldset class="js product-form__input">
           <legend class="form__label">{{ option.name }}</legend>
-          {% render 'product-variant-options', product: product, option: option, block: block %}
+          {% render 'product-variant-options_drop', product: product, option: option, block: block %}
         </fieldset>
+      {%- endif  -%}
       {%- endfor -%}
       <script type="application/json">
         {{ product.variants | json }}

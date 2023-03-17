@@ -842,14 +842,10 @@ class VariantSelects extends HTMLElement {
     modalContent.prepend(newMediaModal);
   }
 
- updateURL() {
+  updateURL() {
     if (!this.currentVariant || this.dataset.updateUrl === 'false') return;
-    let variantId = this.currentVariant.id;
-    if (window.performance && window.performance.navigation.type === window.performance.navigation.TYPE_RELOAD) {
-        variantId = '44600140038457'; // Set variantId to the desired value when reloading the page
-    }
-    window.history.replaceState({ }, '', `${this.dataset.url}?variant=${variantId}`);
-}
+    window.history.replaceState({ }, '', `${this.dataset.url}?variant=${this.currentVariant.id}`);
+  }
 
   updateShareUrl() {
     const shareButton = document.getElementById(`Share-${this.dataset.section}`);

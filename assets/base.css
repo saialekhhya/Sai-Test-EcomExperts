@@ -354,6 +354,7 @@ body,
   width: 1px;
   height: 1px;
   margin: -1px;
+  
   padding: 0;
   border: 0;
   clip: rect(0 0 0 0);
@@ -2994,3 +2995,59 @@ details-disclosure > details {
   }
 }
 
+
+.custom-dropdown {
+  position: relative;
+  display: inline-block;
+  width: 220px;
+}
+
+.dropdown-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+ border: 1px solid black;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>chevron-down</title><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 25px;
+  padding-right: 30px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.dropdown-header:hover {
+  background-color: #e6e6e6;
+}
+
+.dropdown-header span {
+  font-size: 14px;
+}
+
+.dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: none;
+ 
+  z-index: 22;
+}
+
+.dropdown-list.show {
+  display: block;
+}
+
+.dropdown-item {
+   padding: 0;
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #e6e6e6;
+}

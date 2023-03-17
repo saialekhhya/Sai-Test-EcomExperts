@@ -225,9 +225,9 @@ fieldset.product-form__input .form__label {
   border-color: rgb(var(--color-foreground));
 }
 
-.product-form__input input[type='radio']:checked + label {
-  background-color: rgb(var(--color-foreground));
-  color: rgb(var(--color-background));
+.product-form__input input[type='radio']:hover + label {
+  background-color:lightblue;
+  
 }
 
 .product-form__input input[type='radio']:not(.disabled) + label > .visually-hidden {
@@ -1461,6 +1461,13 @@ a.product__text {
   height:40px;
   width:40px;
   border-radius:100%
+}
+ 
+.product-form__input input[type=radio]+label.custom-button-size{
+   border-radius: 0;
+  width: 100%;
+   margin: 0 !important;
+   
 }
  
 .product-form__input input[type=radio]:checked+label.color-swatch{
